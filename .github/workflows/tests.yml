@@ -9,14 +9,14 @@ on:
       - main
 
   schedule:
-    - cron: '*/5 * * * *'
+#    - cron: '*/5 * * * *'
 
 jobs:
   tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.4']
+        php-versions: ['7.4', '8.0', '8.1']
     name: integration-tests (PHP ${{ matrix.php-versions }})
     steps:
       - uses: actions/checkout@v1
@@ -60,7 +60,4 @@ jobs:
           OCI_SSH_PUBLIC_KEY: ${{ secrets.OCI_SSH_PUBLIC_KEY }}
           TELEGRAM_USER_ID: ${{ secrets.TELEGRAM_USER_ID }}
           TELEGRAM_BOT_API_KEY: ${{ secrets.TELEGRAM_BOT_API_KEY }}
-          AD_ALWAYS_FREE: ${{ secrets.AD_ALWAYS_FREE }}
-          TEST_IMAGE_ID: ${{ secrets.TEST_IMAGE_ID }}
-          TEST_SUBNET_ID: ${{ secrets.TEST_SUBNET_ID }}
 
